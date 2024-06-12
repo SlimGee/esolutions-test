@@ -1,0 +1,7 @@
+<div class="py-10 px-4 mx-auto max-w-md sm:px-6 lg:py-14 lg:px-8">
+  <div class="grid gap-6 sm:grid-cols-1">
+    @for (post of PostService.posts(); track post.title) {
+    <app-post [post]="post" (upvote)="PostService.upVote($event)"></app-post>
+    }
+  </div>
+</div>

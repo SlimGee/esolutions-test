@@ -11,16 +11,16 @@ import { AuthService } from './shared/data-access/auth.service';
 import { AuthInfo } from './shared/interfaces/auth-info';
 
 const checkAuth = (auth: AuthInfo): boolean => {
-  //check if token is still valid
-  return true;
+  console.log(auth);
+  return auth.access_token !== '';
 };
 
 export const authFactory = (authService: AuthService) => () => {
   const _localUser: AuthInfo = JSON.parse(
-    localStorage.getItem('user') || '{}'
+    localStorage.getItem('user') as string
   ) as AuthInfo;
 
-  if (checkAuth(_localUser)) {
+  if (_localUser && checkAuth(_localUser)) {
     authService.SetState(_localUser);
   } else {
     authService.RemoveState();

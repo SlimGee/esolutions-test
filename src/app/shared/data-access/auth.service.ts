@@ -64,11 +64,15 @@ export class AuthService {
 
           localStorage.setItem('user', JSON.stringify(authInfo));
 
-          this.stateItem.next(authInfo);
+          this.stateItem.next(response);
 
           return authInfo;
         })
       );
+  }
+
+  checkAuth(authInfo: AuthInfo) {
+    return false;
   }
 
   Register(credentials: Credentials): Observable<any> {

@@ -30,7 +30,7 @@ export class LoginComponent {
   constructor() {
     effect(() => {
       if (this.authService.user()) {
-        console.log('loggedin');
+        this.router.navigate(['home']);
       }
     });
   }

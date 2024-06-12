@@ -1,7 +1,7 @@
 import { User } from './user';
 
 export interface AuthInfo {
-  token?: string;
+  access_token?: string;
   tokenType?: string;
   payload?: User;
 }
