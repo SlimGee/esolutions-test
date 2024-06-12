@@ -5,6 +5,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { passwordMatches } from './utils/password-matches';
 import { RegisterService } from './data-access/register.service';
 import { AuthService } from 'src/app/shared/data-access/auth.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -31,10 +32,17 @@ export class RegisterComponent {
     }
   );
 
+  status = this.registerService.status;
+
   onSubmit() {
     if (this.registerForm.valid) {
       const { confirmPassword, ...credentials } =
         this.registerForm.getRawValue();
+      this.registerService.error$.pipe(
+        map((error) => {
+          console.log(error);
+        })
+      );
       this.registerService.createUser$.next(credentials);
     }
   }

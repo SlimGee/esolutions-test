@@ -53,10 +53,9 @@ export class RegisterService {
         this.state.update((state) => ({ ...state, status: 'creating' }))
       );
 
-    this.error$
-      .pipe(takeUntilDestroyed())
-      .subscribe(() =>
-        this.state.update((state) => ({ ...state, status: 'error' }))
-      );
+    this.error$.pipe(takeUntilDestroyed()).subscribe((err) => {
+      console.log(err);
+      this.state.update((state) => ({ ...state, status: 'error' }));
+    });
   }
 }

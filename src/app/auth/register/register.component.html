@@ -137,6 +137,7 @@
         </div>
 
         <button
+          [disabled]="status() === 'creating'"
           type="submit"
           class="py-2 px-4 w-full font-medium text-white bg-indigo-600 rounded-lg duration-150 hover:bg-indigo-500 active:bg-indigo-600"
         >
