@@ -55,6 +55,23 @@ export class PostService {
     ) as Observable<Post[]>;
   }
 
+  addPost(post: Post) {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authService.user()?.access_token}`,
+    });
+    return this.http
+      .post(this.baseUrl, post, { headers })
+      .pipe(map((response) => response))
+      .subscribe(() => {
+        this.posts$.subscribe((posts) =>
+          this.state.update((state) => ({
+            ...state,
+            posts,
+          }))
+        );
+      });
+  }
+
   upVote(id: number) {
     console.log(this.authService.user());
     const headers = new HttpHeaders({

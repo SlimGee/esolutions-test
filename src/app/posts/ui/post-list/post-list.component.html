@@ -1,4 +1,21 @@
-<div class="py-10 px-4 mx-auto max-w-md sm:px-6 lg:py-14 lg:px-8">
+<div class="py-10 px-4 mx-auto max-w-lg sm:px-6 lg:py-14 lg:px-8">
+  <div class="sticky top-0 p-4 mb-4 bg-white rounded border shadow-sm">
+    <input
+      type="text"
+      class="py-2 px-3 w-full text-base placeholder-gray-600 text-gray-700 rounded-lg border focus:shadow-outline"
+      placeholder="Title"
+    />
+    <textarea
+      class="py-2 px-3 mt-3 w-full h-24 text-base placeholder-gray-600 text-gray-700 rounded-lg border focus:shadow-outline"
+      placeholder="What's on your mind?"
+    ></textarea>
+    <button
+      class="py-2 px-4 mt-2 font-semibold text-white bg-indigo-600 rounded-lg duration-150 hover:bg-indigo-500 active:bg-indigo-600"
+    >
+      Post
+    </button>
+  </div>
+
   <div class="grid gap-6 sm:grid-cols-1">
     @for (post of PostService.posts(); track post.title) {
     <app-post [post]="post" (upvote)="PostService.upVote($event)"></app-post>
